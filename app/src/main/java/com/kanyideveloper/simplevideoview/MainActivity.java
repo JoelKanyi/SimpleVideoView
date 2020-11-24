@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-import java.net.URI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,19 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         mVideoView = findViewById(R.id.videoview);
 
+        initializePlayer();
 
-
-        Uri videoUrl = getMedia(VIDEO_SAMPLE);
-        mVideoView.setVideoURI(videoUrl);
-
-
-        mVideoView.start();
-
-        MediaController mediaController = new MediaController(this);
-
-        mediaController.setMediaPlayer(mVideoView);
-
-        mVideoView.setMediaController(mediaController);
     }
 
     private Uri getMedia(String mediaName){
@@ -43,7 +31,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializePlayer(){
+        Uri videoUri = getMedia(VIDEO_SAMPLE);
+        mVideoView.setVideoURI(videoUri);
+        mVideoView.start();
 
+        MediaController mediaController = new MediaController(this);
+
+        mediaController.setMediaPlayer(mVideoView);
+
+        mVideoView.setMediaController(mediaController);
     }
 
     private void stopPlayer(){
